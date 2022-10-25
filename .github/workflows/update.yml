@@ -1,14 +1,13 @@
-name: "update flake"
+name: "Update"
 on:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 0 * * 5'
   workflow_dispatch:
-  push:
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    
+
     - id: datetime
       run: |
         echo "date1=$(date -d 'last Thursday 00:00 UTC' +'%FT%T%Z')" >> $GITHUB_OUTPUT
@@ -32,14 +31,12 @@ jobs:
     - uses: cachix/install-nix-action@v18
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - name: update flake.lock
-      run: |
+    - run: |
         nix flake update nixpkgs/${{steps.set-result.outputs.result}}
     - name: check it builds
       run: |
         nix build
-    - name: commit changes
-      uses: EndBug/add-and-commit@v9
+    - uses: EndBug/add-and-commit@v9
       with:
         author_name: nix updater
         author_email: updater@nix
