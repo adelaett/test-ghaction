@@ -7,7 +7,7 @@
 mkCoqDerivation {
   pname = "test-ghaction";
   src = ../.;
-  useDune2 = true;
+  useDune = true;
 
   version = "0.1.0";
 
