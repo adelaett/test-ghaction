@@ -2,5 +2,5 @@
 
 coqPackages.overrideScope' (
   self: super: {
-    test-ghaction = self.callPackage ./test-ghaction.nix { };
+    coqtest = self.callPackage ./coqtest.nix { };
 })

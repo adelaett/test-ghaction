@@ -5,7 +5,7 @@
 }:
 
 mkCoqDerivation {
-  pname = "test-ghaction";
+  pname = "coqtest";
   src = ../.;
   useDune = true;
 

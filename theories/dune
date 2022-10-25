@@ -1,5 +1,5 @@
 (coq.theory
- (name Gh)
+ (name coqtest)
 )
 
 (include_subdirs qualified)

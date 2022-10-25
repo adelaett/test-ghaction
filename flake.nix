@@ -15,11 +15,11 @@
       in
       rec {
         packages = {
-          test-ghaction = coqPackages.test-ghaction;
+          coqtest = coqPackages.coqtest;
         };
-        defaultPackage = packages.test-ghaction;
+        defaultPackage = packages.coqtest;
         devShell = pkgs.mkShell {
-          inputsFrom = [ packages.test-ghaction ];
+          inputsFrom = [ packages.coqtest ];
           buildInputs = [
             coqPackages.serapi
             pkgs.ocamlPackages.dune_2
