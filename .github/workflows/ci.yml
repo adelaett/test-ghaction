@@ -22,6 +22,7 @@ jobs:
         rm nix-store.nar
 
     - run: nix develop
+    - run: nix build
 
     - name: dump store
       if: steps.cache-restore.outputs.cache-hit == 'false'
@@ -33,7 +34,4 @@ jobs:
       with:
         path: nix-store.nar
         key: nix-store-nar-${{ hashFiles('flake.lock') }}
-
-
-    - run: nix build
 
