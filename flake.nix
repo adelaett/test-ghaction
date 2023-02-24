@@ -1,7 +1,7 @@
 {
   inputs = {
-    flake-utils.url = github:numtide/flake-utils;
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = {nixpkgs, flake-utils, ...}:
@@ -16,15 +16,16 @@
       rec {
         packages = {
           coqtest = coqPackages.coqtest;
+          hello = pkgs.hello;
         };
-        defaultPackage = packages.coqtest;
+        defaultPackage = packages.hello;
         devShell = pkgs.mkShell {
-          inputsFrom = [ packages.coqtest ];
+          inputsFrom = [ packages.hello ];
           buildInputs = [
-            coqPackages.serapi
-            pkgs.ocamlPackages.dune_2
-            pkgs.ocaml
-            python3.pkgs.alectryon
+            # coqPackages.serapi
+            # pkgs.ocamlPackages.dune_2
+            # pkgs.ocaml
+            # python3.pkgs.alectryon
           ];
         };
       }
