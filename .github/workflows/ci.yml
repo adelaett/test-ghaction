@@ -13,7 +13,7 @@ jobs:
     - name: restore current cache
       uses: actions/cache/restore@v3
       with:
-        path: /store/nix
+        path: /nix/store
         key: nix-store-${{ hashFiles('flake.lock') }}
     - run: nix develop
     - run: nix build
@@ -22,5 +22,5 @@ jobs:
       uses: actions/cache/save@v3
       id: cache
       with:
-        path: /store/nix
+        path: /nix/store
         key: nix-store-${{ hashFiles('flake.lock') }}
