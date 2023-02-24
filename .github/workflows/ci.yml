@@ -10,16 +10,17 @@ jobs:
     - uses: cachix/install-nix-action@v18
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+    - name: hack
+      run: sudo usermod -a -G nixbld $(whoami)
     - name: restore current cache
-      uses: divnix/nix-cache-action/restore@v3
+      uses: actions/cache/restore@v3
       with:
         path: /nix/store
         key: nix-store-${{ hashFiles('flake.lock') }}
     - run: nix develop
     - run: nix build
-
     - name: save current cache
-      uses: divnix/nix-cache-action/save@v3
+      uses: actions/cache/save@v3
       id: cache
       with:
         path: /nix/store
