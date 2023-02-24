@@ -24,8 +24,10 @@ jobs:
     - run: nix develop
 
     - name: dump store
+      if: steps.cache-restore.outputs.cache-hit == 'false'
       run: nix-store --export $(nix-store -qR $(nix print-dev-env --json | jq .variables.prefix.value -r)) > nix-store.nar
     - name: save current cache
+      if: steps.cache-restore.outputs.cache-hit == 'false'
       uses: actions/cache/save@v3
       id: cache
       with:
