@@ -17,14 +17,14 @@ jobs:
         path: nix-store.nar
         key: nix-store-nar-${{ hashFiles('flake.lock') }}
     - if: steps.cache-restore.outputs.cache-hit == 'true'
-      run: nix-store --import < nix-store.nar
+      run: |
+        nix-store --import < nix-store.nar
+        rm nix-store.nar
 
     - run: nix develop
 
     - name: dump store
-      run: |
-        rm nix-store.nar
-        nix-store --export > nix-store.nar
+      run: nix-store --export > nix-store.nar
     - name: save current cache
       uses: actions/cache/save@v3
       id: cache
