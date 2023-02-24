@@ -16,16 +16,15 @@
       rec {
         packages = {
           coqtest = coqPackages.coqtest;
-          hello = pkgs.hello;
         };
-        defaultPackage = packages.hello;
+        defaultPackage = packages.coqtest;
         devShell = pkgs.mkShell {
-          inputsFrom = [ packages.hello ];
+          inputsFrom = [ packages.coqtest ];
           buildInputs = [
-            # coqPackages.serapi
-            # pkgs.ocamlPackages.dune_2
-            # pkgs.ocaml
-            # python3.pkgs.alectryon
+            coqPackages.serapi
+            pkgs.ocamlPackages.dune_2
+            pkgs.ocaml
+            python3.pkgs.alectryon
           ];
         };
       }
