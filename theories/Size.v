@@ -2,12 +2,6 @@
 Require Import ZArith Lia List Program.Equality.
 Require Import Autosubst.Autosubst_Basics.
 
-
-Lemma bla: True.
-Proof.
-  eapply tt.
-Qed.
-
 Class Size (A : Type) := size : A -> nat.
 
 Arguments size {A _} !x /.
