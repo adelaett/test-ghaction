@@ -24,7 +24,7 @@ jobs:
     - run: nix develop
 
     - name: dump store
-      run: nix-store --export > nix-store.nar
+      run: nix-store --export $(nix-store -qR $(nix print-dev-env --json | jq .variables.prefix.value -r)) > nix-store.nar
     - name: save current cache
       uses: actions/cache/save@v3
       id: cache
